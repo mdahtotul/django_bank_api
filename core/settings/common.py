@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+from datetime import timedelta
 from pathlib import Path
 import os
 
@@ -38,10 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bank'
+    'corsheaders',
+    'rest_framework',
+    'djoser',
+    'bank',
+    'custom_auth'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -73,8 +79,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.app'
 
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5050",
+    "http://127.0.0.1:8001"
+]
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
+AUTH_USER_MODEL = 'custom_auth.User'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -91,6 +103,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    "COERCE_DECIMAL_TO_STRING": False,
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+}
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'custom_auth.serializers.UserCreateSerializer',
+        'current_user': 'custom_auth.serializers.UserSerializer',
+    }
+}
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=2),
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

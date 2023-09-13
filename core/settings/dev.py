@@ -24,21 +24,12 @@ if DEBUG:
         "127.0.0.1",
     ]
 
-    # DATABASES = {
-    #     "default": dj_database_url.config(
-    #         default = os.environ.get("DEVELOPMENT_DB_URL"), conn_max_age=600
-    #     )
-    # }
-
-
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-            # "ENGINE": "django.db.backends.mysql",
-            # "NAME": "storefront3",
-            # "HOST": "localhost",
-            # "USER": "root",
-            # "PASSWORD": "hp15CC154TX",
+            "ENGINE": "django.db.backends.mysql",
+            "NAME": "bank",
+            "HOST": "localhost",
+            "USER": "root",
+            "PASSWORD": "hp15CC154TX",
         }
     }

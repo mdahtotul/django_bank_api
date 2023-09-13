@@ -30,75 +30,27 @@ def get_all_domains(domain_name):
             "access_role": "Authenticated"
         },
         {
-            "name": "collections",
-            "endpoint": f"{domain_name}/store/collections",
-            "token": "JWT",
-            "req_type": "GET, POST",
-            "access_role": "Public, Admin"
-        },
-        {
-            "name": "collection-detail",
-            "endpoint": f"{domain_name}/store/collections/<int:pk>",
-            "token": "JWT",
-            "req_type": "PUT, DELETE",
-            "access_role": "Admin"
-        },
-        {
-            "name": "products",
-            "endpoint": f"{domain_name}/store/products",
-            "token": "JWT",
-            "req_type": "GET, POST",
-            "access_role": "Public, Admin"
-        },
-        {
-            "name": "product-detail",
-            "endpoint": f"{domain_name}/store/products/<int:pk>",
-            "token": "JWT",
-            "req_type": "PUT, DELETE",
-            "access_role": "Admin"
-        },
-        {
-            "name": "carts",
-            "endpoint": f"{domain_name}/store/carts",
-            "token": "JWT",
-            "req_type": "GET, POST",
-            "access_role": "Authenticate"
-        },
-        {
-            "name": "cart-detail",
-            "endpoint": f"{domain_name}/store/carts/<int:cart_pk>",
-            "token": "JWT",
-            "req_type": "PUT, DELETE",
+            "name": "bank",
+            "endpoint": f"{domain_name}/bank/",
+            "token": "",
+            "req_type": "POST",
             "access_role": "Authenticated"
         },
         {
-            "name": "cart-items",
-            "endpoint": f"{domain_name}/store/carts/<int:cart_pk>/items/",
-            "token": "JWT",
-            "req_type": "GET, POST",
+            "name": "branches",
+            "endpoint": f"{domain_name}/bank/branches/",
+            "token": "",
+            "req_type": "POST",
             "access_role": "Authenticated"
         },
         {
-            "name": "cart-items-add",
-            "endpoint": f"{domain_name}/store/carts/<int:cart_pk>/items/<int:cart_items_pk>",
-            "token": "JWT",
-            "req_type": "GET, PATCH",
+            "name": "addresses",
+            "endpoint": f"{domain_name}/bank/addresses/",
+            "token": "",
+            "req_type": "POST",
             "access_role": "Authenticated"
         },
-        {
-            "name": "orders",
-            "endpoint": f"{domain_name}/store/orders",
-            "token": "JWT",
-            "req_type": "GET, POST",
-            "access_role": "Authenticate"
-        },
-        {
-            "name": "order-detail",
-            "endpoint": f"{domain_name}/store/orders/<int:pk>",
-            "token": "JWT",
-            "req_type": "PUT, DELETE",
-            "access_role": "Authenticated, Admin"
-        },
+        
     ]
 
     return all_domains

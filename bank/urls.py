@@ -3,9 +3,9 @@ from . import views
 
 
 router = routers.DefaultRouter()
-router.register('addresses', views.AddressViewSet, basename='addresses')
-router.register('all', views.BankViewSet, basename='all')
-router.register('branches', views.BranchViewSet, basename='branches')
-# router.register('accounts', views.AccountSerializer, basename='accounts')
+router.register("addresses", views.AddressViewSet, basename="addresses")
+router.register("all", views.BankViewSet, basename="all")
+router.register("branches", views.BranchViewSet, basename="branches")
+router.register("accounts", views.AccountViewSet, basename="accounts")
 
 urlpatterns = router.urls

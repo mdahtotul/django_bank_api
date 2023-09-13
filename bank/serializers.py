@@ -24,6 +24,12 @@ class BankSerializer(serializers.ModelSerializer):
         fields = ["id", "name", "code"]
 
 
+class SimpleBranchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Branch
+        fields = ["id", "name", "routing_no", "phone"]
+
+
 class BranchSerializer(serializers.ModelSerializer):
     address = SimpleAddressSerializer()
 
@@ -52,6 +58,9 @@ class UpdateBranchSerializer(serializers.ModelSerializer):
 
 
 class AccountSerializer(serializers.ModelSerializer):
+    branch = SimpleBranchSerializer()
+    address = SimpleAddressSerializer()
+
     class Meta:
         model = Account
         fields = [
@@ -63,6 +72,22 @@ class AccountSerializer(serializers.ModelSerializer):
             "balance",
             "user",
             "branch",
-            "branch",
             "address",
         ]
+
+
+class CreateAccountSerializer(serializers.ModelSerializer):
+    def save(self, **kwargs):
+        UNO = self.context.get("u_no")
+        self.instance = Account.objects.create(UNO=UNO, **self._validated_data)
+        return self.instance
+
+    class Meta:
+        model = Account
+        fields = ["id", "type", "phone", "bod", "balance", "user", "branch", "address"]
+
+
+class UpdateAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ["id", "type", "phone", "bod", "balance", "address"]
